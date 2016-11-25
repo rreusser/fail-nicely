@@ -6,6 +6,10 @@
 
 See demo: [fail-nicely](http://rickyreusser.com/fail-nicely/)
 
+```bash
+npm install fail-nicely
+```
+
 ```javascript
 var failNicely = require('fail-nicely');
 
