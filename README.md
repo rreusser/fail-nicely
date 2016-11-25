@@ -16,6 +16,16 @@ var failNicely = require('fail-nicely');
 failNicely('This demo requires WebGL 7 support!', {title: 'Sorry!'});
 ```
 
+You can also just pass it an error:
+
+```javascript
+try {
+  var y = 7 + g;
+} catch (e) {
+  failNicely(e);
+}
+```
+
 ## Usage
 
 #### `require('fail-nicely')(messageOrError[, options])`
