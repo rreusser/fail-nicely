@@ -18,7 +18,7 @@ failNicely('This demo requires WebGL 7 support!', {title: 'Sorry!'});
 
 ## Usage
 
-#### `require('fail-nicely')(messageOrError[, options])
+#### `require('fail-nicely')(messageOrError[, options])`
 
 Appends an overlay to the body element with a short explanation of what happened. Usefulf for making quick and ugly demos a little less ugly. If the first argument is an `Error`, it will use the error's message. If it's a string, that will be the explanation. Options are:
 
