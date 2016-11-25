@@ -4,6 +4,8 @@
 
 ## Example
 
+See demo: [fail-nicely](http://rickyreusser.com/fail-nicely/)
+
 ```javascript
 var failNicely = require('fail-nicely');
 
