@@ -9,9 +9,7 @@ See demo: [fail-nicely](http://rickyreusser.com/fail-nicely/)
 ```javascript
 var failNicely = require('fail-nicely');
 
-failNicely("Your computer is too old!", {
-  title: 'Sorry!'
-});
+failNicely('This demo requires WebGL 7 support!, {title: 'Sorry!'});
 ```
 
 ## Usage
