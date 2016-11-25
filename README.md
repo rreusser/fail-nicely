@@ -9,7 +9,7 @@ See demo: [fail-nicely](http://rickyreusser.com/fail-nicely/)
 ```javascript
 var failNicely = require('fail-nicely');
 
-failNicely('This demo requires WebGL 7 support!, {title: 'Sorry!'});
+failNicely('This demo requires WebGL 7 support!', {title: 'Sorry!'});
 ```
 
 ## Usage
