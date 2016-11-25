@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>fail-nicely</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta charset=utf-8><meta name="application-name" content="fail-nicely">
+<meta name="subject" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta name="abstract" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta name="twitter:title" content="fail-nicely">
+<meta name="description" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta name="twitter:description" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta name="author" content="Ricky Reusser">
+<meta name="twitter:creator" content="Ricky Reusser">
+<meta name="twitter:card" content="summary">
+<meta itemprop="title" content="fail-nicely">
+<meta itemprop="description" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta property="og:title" content="fail-nicely">
+<meta property="og:description" content="A one-liner to at least explain why things didn&apos;t work out">
+<meta property="article:author" content="Ricky Reusser">
+<style type="text/css">.github-corner{display:block;position:absolute;top:0;left:auto;right:0;z-index:10000}.github-corner svg{display:block}.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%{transform:rotate(0)}20%{transform:rotate(-25deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-25deg)}80%{transform:rotate(10deg)}100%{transform:rotate(0)}}@media(max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></head>
+<body><a href="https://github.com/rreusser/fail-nicely.git" class="github-corner" aria-label="View source on Github"><svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 250 250" fill="#333">
+  <path d="M0 0l115 115h15l12 27 108 108V0z" fill="#fff"/>
+  <path class="octo-arm" d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16" style="-webkit-transform-origin: 130px 106px; transform-origin: 130px 106px"/>
+  <path class="octo-body" d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z"/>
+</svg>
+</a></body>
+<script>
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require('../')('This demo requires WebGL 7 support!');
+
+},{"../":2}],2:[function(require,module,exports){
+'use strict';
+
+var h = require('h');
+
+module.exports = failNicely;
+
+function failNicely (msg, options) {
+  if (typeof msg === 'object' && msg.constructor.name === 'Error') {
+    msg = msg.message;
+  } else if (typeof msg !== 'string') {
+    throw new Error('fail-nicely: Oops! the message must be a String or an Error. How ironic.');
+  }
+
+  options = options || {};
+  var zIndex = options.zIndex === undefined ? 9999 : parseInt(options.zIndex);
+  var bg = options.bg === undefined ? '#333' : options.bg;
+  var fg = options.fg === undefined ? '#fff' : options.fg;
+  var title = options.title === undefined ? 'Sorry!' : options.title;
+  var fontFamily = options.fontFamily === undefined ? 'Helvetica, Arial, sans-serif' : options.fontFamily;
+  var position = options.position === undefined ? 'fixed' : options.position;
+  var invert = options.invert === undefined ? false : !!options.invert;
+
+  if (invert) {
+    var tmp = fg;
+    fg = bg;
+    bg = tmp;
+  }
+
+  var overlayStyles = {
+    position: position,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    'background-color': bg,
+    color: fg,
+    'text-align': 'center',
+  };
+
+  var headingStyles = {
+    'font-family': 'Helvetica, Arial, sans-serif',
+  }
+
+  var explanationStyles = {
+    'font-family': 'Helvetica, Arial, sans-serif',
+  }
+
+  var containerStyles = {
+    'transform': 'translate(0, -50%)',
+    'margin-top': '50vh'
+  };
+
+  document.body.appendChild(h('div', {style: overlayStyles}, [
+    h('div', {style: containerStyles}, [
+      h('h1', title, {style: headingStyles}),
+      h('p', msg, {style: explanationStyles})
+    ])
+  ]));
+}
+
+},{"h":3}],3:[function(require,module,exports){
+;(function () {
+
+function h() {
+  var args = [].slice.call(arguments), e = null
+  function item (l) {
+    
+    function parseClass (string) {
+      var m = string.split(/([\.#]?[a-zA-Z0-9_-]+)/)
+      m.forEach(function (v) {
+        var s = v.substring(1,v.length)
+        if(!v) return 
+        if(!e)
+          e = document.createElement(v)
+        else if (v[0] === '.')
+          e.classList.add(s)
+        else if (v[0] === '#')
+          e.setAttribute('id', s)
+        
+      })
+    }
+
+    if(l == null)
+      ;
+    else if('string' === typeof l) {
+      if(!e)
+        parseClass(l)
+      else
+        e.appendChild(document.createTextNode(l))
+    }
+    else if('number' === typeof l 
+      || 'boolean' === typeof l
+      || l instanceof Date 
+      || l instanceof RegExp ) {
+        e.appendChild(document.createTextNode(l.toString()))
+    }
+    else if (Array.isArray(l))
+      l.forEach(item)
+    else if(l instanceof HTMLElement)
+      e.appendChild(l)
+    else if ('object' === typeof l) {
+      for (var k in l) {
+        if('function' === typeof l[k])
+          e.addEventListener(k, l[k])
+        else if(k === 'style') {
+          for (var s in l[k])
+            e.style.setProperty(s, l[k][s])
+        }
+        else
+          e.setAttribute(k, l[k])
+      }
+    }
+  }
+  while(args.length) {
+    item(args.shift())
+  }
+  return e
+}
+
+if(typeof module === 'object')
+  module.exports = h
+else
+  this.h = h
+})()
+
+},{}]},{},[1]);
+</script>
+</html>
