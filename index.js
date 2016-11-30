@@ -40,11 +40,16 @@ function failNicely (msg, options) {
 
   var headingStyles = {
     'font-family': 'Helvetica, Arial, sans-serif',
-  }
+  };
 
   var explanationStyles = {
     'font-family': 'Helvetica, Arial, sans-serif',
-  }
+    'max-width': '640px',
+    'margin-left': 'auto',
+    'margin-right': 'auto',
+    'line-height': '1.4',
+    'padding': '0 15px'
+  };
 
   var containerStyles = {
     'transform': 'translate(0, -50%)',

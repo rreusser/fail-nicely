@@ -1,6 +1,6 @@
 {
   "name": "fail-nicely",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A one-liner to at least explain why things didn't work out",
   "main": "index.js",
   "scripts": {
