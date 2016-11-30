@@ -35,6 +35,7 @@ function failNicely (msg, options) {
     'background-color': bg,
     color: fg,
     'text-align': 'center',
+    'z-index': zIndex
   };
 
   var headingStyles = {
