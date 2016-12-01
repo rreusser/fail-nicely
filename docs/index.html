@@ -42,6 +42,8 @@ var h = require('h');
 module.exports = failNicely;
 
 function failNicely (msg, options) {
+  if (!msg) return;
+
   if (msg instanceof Error) {
     msg = msg.name + ': ' + msg.message;
   } else if (typeof msg !== 'string') {
@@ -77,11 +79,16 @@ function failNicely (msg, options) {
 
   var headingStyles = {
     'font-family': 'Helvetica, Arial, sans-serif',
-  }
+  };
 
   var explanationStyles = {
     'font-family': 'Helvetica, Arial, sans-serif',
-  }
+    'max-width': '640px',
+    'margin-left': 'auto',
+    'margin-right': 'auto',
+    'line-height': '1.4',
+    'padding': '0 15px'
+  };
 
   var containerStyles = {
     'transform': 'translate(0, -50%)',

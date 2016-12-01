@@ -30,7 +30,7 @@ try {
 
 #### `require('fail-nicely')(messageOrError[, options])`
 
-Appends an overlay to the body element with a short explanation of what happened. Usefulf for making quick and ugly demos a little less ugly. If the first argument is an `Error`, it will use the error's message. If it's a string, that will be the explanation. Options are:
+Appends an overlay to the body element with a short explanation of what happened. Usefulf for making quick and ugly demos a little less ugly. If the first argument is an `Error`, it will use the error's message. If it's a string, that will be the explanation. If it's falsey, it will simply be skipped. Options are:
 
 - `bg`: overlay background color (default: `'#333'`)
 - `fg`: overlay foreground (text) color (default: `'#fff'`)

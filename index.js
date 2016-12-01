@@ -5,6 +5,8 @@ var h = require('h');
 module.exports = failNicely;
 
 function failNicely (msg, options) {
+  if (!msg) return;
+
   if (msg instanceof Error) {
     msg = msg.name + ': ' + msg.message;
   } else if (typeof msg !== 'string') {
