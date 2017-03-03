@@ -11,9 +11,19 @@ npm install fail-nicely
 ```
 
 ```javascript
-var failNicely = require('fail-nicely');
+var createHandler = require('fail-nicely');
 
-failNicely('This demo requires WebGL 7 support!', {title: 'Sorry!'});
+var handlerFailure = createHandler(onSuccess, {title: 'Sorry!'});
+
+function onSuccess (message) {
+  console.log(message);
+}
+
+// Execute the callback with a failure:
+handlerFailure('This demo requires WebGL 7 support!');
+
+// Execute the onSuccess callback:
+handlerFailure(null, 'Loaded successfully!');
 ```
 
 You can also just pass it an error:
@@ -22,15 +32,27 @@ You can also just pass it an error:
 try {
   var y = 7 + g;
 } catch (e) {
-  failNicely(e);
+  handlerFailure(e);
 }
 ```
 
+The factory pattern is just a little convoluted, but the upshot is that intercepting fatal errors becomes a simple one-liner:
+
+```javascript
+var fs = require('fs')
+fs.readFile('test.json', createHandler(function (data) {
+  console.log('loaded data:', data)
+}))
+```
+
+
 ## Usage
 
-#### `require('fail-nicely')(messageOrError[, options])`
+#### `require('fail-nicely')(callback[, options])`
 
-Appends an overlay to the body element with a short explanation of what happened. Usefulf for making quick and ugly demos a little less ugly. If the first argument is an `Error`, it will use the error's message. If it's a string, that will be the explanation. If it's falsey, it will simply be skipped. Options are:
+Returns a node-style callback (`function (err, data)`) that intercepts and handlers errors and otherwise forwards data through to `callback`.
+
+When `err` is truthy, appends an overlay to the body element with a short explanation of what happened. Usefulf for making quick and ugly demos a little less ugly. If the first argument is an `Error`, it will use the error's message. If it's a string, that will be the explanation. Options are:
 
 - `bg`: overlay background color (default: `'#333'`)
 - `fg`: overlay foreground (text) color (default: `'#fff'`)
