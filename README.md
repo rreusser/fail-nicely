@@ -13,17 +13,17 @@ npm install fail-nicely
 ```javascript
 var createHandler = require('fail-nicely');
 
-var handlerFailure = createHandler(onSuccess, {title: 'Sorry!'});
+var handleFailure = createHandler(onSuccess, {title: 'Sorry!'});
 
 function onSuccess (message) {
   console.log(message);
 }
 
 // Execute the callback with a failure:
-handlerFailure('This demo requires WebGL 7 support!');
+handleFailure('This demo requires WebGL 7 support!');
 
 // Execute the onSuccess callback:
-handlerFailure(null, 'Loaded successfully!');
+handleFailure(null, 'Loaded successfully!');
 ```
 
 You can also just pass it an error:
