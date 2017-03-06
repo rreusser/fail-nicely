@@ -32,7 +32,7 @@ You can also just pass it an error:
 try {
   var y = 7 + g;
 } catch (e) {
-  handlerFailure(e);
+  handleFailure(e);
 }
 ```
 
