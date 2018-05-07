@@ -2,6 +2,28 @@
 
 > A one-liner to at least explain why things didn't work out
 
+## tl;dr
+
+Expect something might throw a fatal error? Instead of
+
+```javascript
+function (err, data) {
+  if (err) { return ... }
+  ...
+}
+```
+
+just write
+
+```javascript
+require('fail-nicely')(function (data) {
+   ...
+})
+```
+
+and get a nice-enough error screen. Great for drive-by error handling.
+
+
 ## Example
 
 See demo: [fail-nicely](https://rreusser.github.io/fail-nicely/)
