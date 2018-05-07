@@ -4,7 +4,7 @@
 
 ## Example
 
-See demo: [fail-nicely](http://rickyreusser.com/fail-nicely/)
+See demo: [fail-nicely](https://rreusser.github.io/fail-nicely/)
 
 ```bash
 npm install fail-nicely
