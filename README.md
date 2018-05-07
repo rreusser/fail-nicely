@@ -8,7 +8,7 @@ Expect something might throw a fatal error? Instead of
 
 ```javascript
 function (err, data) {
-  if (err) { return ... }
+  if (err) { show the error somehow? }
   ...
 }
 ```
